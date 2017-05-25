@@ -4,10 +4,9 @@
     SL.andRedEyelikeWhiteStuff = {
         init: function() {
             this.pgCssDesktop();
-            this.rowOne();
             this.popup();
             this.selection();
-            this.mobile();
+        
 
        
 
@@ -29,16 +28,6 @@
         }, //pgCssDesktop
        
  
-        rowOne: function() {
-            console.info('%c rowOne \u221a', 'background:blue;color:white;');
-            
-
-           
-
-           
-
-        },//rowOne
-
 
         popup: function() {
 
@@ -55,54 +44,8 @@
 
         selection: function() {
              console.info('%c rowOne \u221a', 'background:blue;color:white;');
-             // debugger;
-             // window.addEventListener('click', function(e) {
-             //    if(e.target.parentElement.className == "notselected" ) {
-             //         e.target.parentElement.className = "selected";
-             //         console.log(e);
-             //         //facet children
-             //         var tar;
-             //         var fa = document.getElementById('facet_size').children;
-             //         for (var i=0; i < fa.length; i++) {
-             //            if(fa[i].attributes[5].value == e.target.parentElement.attributes[5].value) {
-             //                console.log('match');//if match
-             //                fa[i].className = " ";
-             //                fa[i].attributes[2].value = true;
-             //                //fa[i].click();
-
-                            
-
-
-             //            }//if
-                    
-                     
-             //         }//for
-                    
-             //    }//if notselected, selected
-
-             //    else if (e.target.parentElement.className == "selected") {
-             //        e.target.parentElement.className = "notselected";
-             //        //facet children
-             //         var fa = document.getElementById('facet_size').children;
-             //         for (var i=0; i < fa.length; i++) {
-             //            if(fa[i].attributes[5].value == e.target.parentElement.attributes[5].value) {
-             //                console.log('match');//if match
-             //                fa[i].className = "notselected";
-             //                fa[i].attributes[2].value = false;
-             //            }//if
-                    
-                     
-             //         }//for
-                
-             //    }//else if selected, notselected
-
-
-                               
-
-            // });//click
-
-
-             $('body').on(function(e) {
+             debugger;
+             window.addEventListener('click', function(e) {
                 if(e.target.parentElement.className == "notselected" ) {
                      e.target.parentElement.className = "selected";
                      console.log(e);
@@ -112,10 +55,8 @@
                      for (var i=0; i < fa.length; i++) {
                         if(fa[i].attributes[5].value == e.target.parentElement.attributes[5].value) {
                             console.log('match');//if match
-                            $('#facet_size > li:nth-child(2) > a').click();
-
-                            
-
+                            fa[i].className = " ";
+                            fa[i].attributes[2].value = true;
 
                         }//if
                     
@@ -123,49 +64,16 @@
                      }//for
                     
                 }//if notselected, selected
-
-                else if (e.target.parentElement.className == "selected") {
-                    e.target.parentElement.className = "notselected";
-                    //facet children
-                     var fa = document.getElementById('facet_size').children;
-                     for (var i=0; i < fa.length; i++) {
-                        if(fa[i].attributes[5].value == e.target.parentElement.attributes[5].value) {
-                            console.log('match');//if match
-                            fa[i].className = "notselected";
-                            fa[i].attributes[2].value = false;
-                        }//if
-                    
-                     
-                     }//for
-                
-                }//else if selected, notselected
-
-
-                               
+                         
 
              });//click
 
 
-        },//selection
+        }//selection
 
        
       
 
-        mobile: function() {
-            console.info('%c mobile \u221a', 'background:blue;color:white;');
-            var mainCss = '@media screen and (max-width:780px) { .xxx {}  }';
-            var head = document.getElementsByTagName('head')[0];
-
-            function addcss(css) {
-                var s = document.createElement('style');
-                s.setAttribute('type', 'text/css');
-                s.appendChild(document.createTextNode(css));
-                head.appendChild(s);
-            }
-            addcss(mainCss);
-
-
-        }//mobile
 
        
             
