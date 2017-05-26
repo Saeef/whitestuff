@@ -23,6 +23,29 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 - if user closes the popup and then moves onto another listed URL keep it closed
 - when user selects a size then moves onto another listed URL display popup with unselected sizes once    
   again. Don't carry forward sizes across categories.
+
+### notes
+- click on minus sign to switch to plus sign and vice-versa
+- if minus-sign, then you\'re able to check boxes.
+- if one or more boxes are checked,subheading 1 changes to subheading 2
+- if switched from minus to plus, all checkboxes are removed and you\'re    
+  not able to check any boxes
+- if subheading2 on, then it also switches back to subheading1 (full reset) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
  
  <kbd>control image</kbd> :rocket:       
