@@ -29,6 +29,7 @@
 	height: 42px;
 	background-color: #616a75;
 	width: 45px;
+	cursor: pointer;
 }
 
 .opclosPlus:after {
@@ -45,6 +46,10 @@
 	line-height: 40px;
 	vertical-align: middle;
 	padding:0 12px;
+}
+
+#opclos:active,#opclos:focus,:opclos:visited,#opclosMinus:active,#opclosMinus:focus,:opclosMinus:visited,#opclosPlus:active,#opclosPlus:focus,:opclosPlus:visited {
+	outline:none;
 }
 
 input:focus,input:active,input:hover,input:visited,input:checked {
@@ -125,6 +130,10 @@ input:focus,input:active,input:hover,input:visited,input:checked {
 input,label {
 	cursor:pointer;
 	text-decoration: none;
+}
+
+input:active,input:focus,input:visited, label:active, label:focus,label:visited, span:active,span:focus,span:visited {
+	outline:none;
 }
 
 .datacount {
