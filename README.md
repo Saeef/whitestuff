@@ -18,3 +18,8 @@
 
 
  checkbox onclick not firing
+ 
+ 
+ 
+ <kbd>control image</kbd> :rocket:       
+ ![](/images/whiteStuff.png)
