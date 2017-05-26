@@ -8,7 +8,7 @@
 Adding a shop by size filter to appear as a sticky footer on the product listing page prompts the user    
 to select their sizes earlier in the journey to avoid viewing products not in their size.    
 
-### design changes to be injected into site with javascript   :pencil:
+### design changes: ** dom injected - javascript **   :pencil:
 - add size filter popup on the bottom towards right of screen
 - list sizes vertically across 3 columns
 - when user has selected a size display a tick in the size box
