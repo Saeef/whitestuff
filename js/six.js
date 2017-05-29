@@ -1,4 +1,3 @@
-
 (function(andRedEyelikeWhiteStuff, undefined) {
     var $ = window.jQuery;
     var SL = {};
@@ -6,12 +5,8 @@
         init: function() {
             this.pgCssDesktop();
             this.popup();
-            //this.position();
             this.opclosEvt();
-            this.subheading();
-            
-           
-
+    
         
         }, //init
         pgCssDesktop: function() {
@@ -40,75 +35,11 @@
 
         },//popup
 
-        // position: function() {
-        //     console.info('%c position \u221a', 'background:blue;color:white;');
-        //     var popwrapper = document.getElementById('popwrapper');
-            
-        //     function reheight() {
-        //         popwrapper.style.height = ((34 * window.innerHeight)/100).toFixed(1) + "px";
-                    
-        //     }//reheight
-        //     reheight();
-        //     window.addEventListener('resize', reheight,false);
-                
-            
-            
-            
-        // },//position
-
 
         opclosEvt: function() {
             console.info('%c opclosEvt \u221a', 'background:blue;color:white;');
-            //open/close event fun
+            //globals
             var opclos = document.getElementById('opclos');
-            var subheading1 = document.querySelectorAll('.subheading1')[0];
-            var inp = document.querySelectorAll('.cktd label input');
-            var selecto = document.querySelectorAll('.cktd');
-            opclos.addEventListener('click',function(e) {
-                console.log(e)
-                if(e.target.className == "opclosMinus") {
-                    e.target.className = "opclosPlus";
-                    document.getElementById('popwrapper').
-                    className = "closednow";
-                    document.querySelectorAll('.subheading1')[0].
-                    style.display = "none";
-                    document.querySelectorAll('.subheading2')[0].
-                    style.display = "none";
-                    document.getElementById('mainContainer').
-                    style.display = "none";
-                    document.getElementById('popwrapper').
-                    style.bottom = "0.5px";
-                    //if closed, remove checkmarks
-                    for(var i=0; i < inp.length; i++) {
-                        inp[i].checked = false;
-                    }//for
-                    // for(var i=0; i < selecto.length; i++) {
-                    //     selecto[i].className = "cktd selected";
-                    // }//for
-                    subheading1.innerText = "Browsing made easier: select your size and only see items in stock for you!";
-                   
-                }//if minus and closing
-                else if(e.target.className == "opclosPlus") {
-                    e.target.className = "opclosMinus";
-                    document.getElementById('popwrapper').
-                    className = "main";
-                    document.querySelectorAll('.subheading1')[0].
-                    style.display = "block";
-                    document.querySelectorAll('.subheading2')[0].
-                    style.display = "none";
-                    document.getElementById('mainContainer').
-                    style.display = "block";
-                    document.getElementById('popwrapper').
-                    style.bottom =  "1px";
-                    subheading1.innerText = "Browsing made easier: select your size and only see items in stock for you!";
-                }//from closed/plus to minus
-
-            },false);//opclos event   
-
-        },//opclos
-
-        subheading: function() {
-            console.info('%c subheading \u221a', 'background:blue;color:white;');
             var mainContainer = document.getElementById('mainContainer');
             var opclos = document.getElementById('opclos');
             var subheading01 = document.querySelectorAll('.subheading1')[0];
@@ -118,13 +49,16 @@
             var yessel = [];
             var count = 0;
 
-            function classremoved(e) {
-                e.target.parentElement.parentElement.className = "cktd notselected";
+            //functions
+             function classremoved(e) {
+                e.target.parentElement.parentElement.classList.remove('selected');
+                e.target.parentElement.parentElement.classList.add('notselected');
                 return true;
             }//classremoved
 
             function classadded(e) {
-                e.target.parentElement.parentElement.className = "cktd selected";
+                e.target.parentElement.parentElement.classList.remove('notselected');
+                e.target.parentElement.parentElement.classList.add('selected');
                 subheading01.style.display = "none";
                 subheading02.style.display = "block";
                 subheading02.innerText = "Select several sizes to broaden your choice.";
@@ -152,73 +86,96 @@
                 return true;
             }//allselected
 
-             function howmanySelected(e) {
-                
+            function howmanySelected(e) {
+                e = e || null;
+                console.log(e);
                 if(nosel.length >= selected.length) {
-                        allselected();
+                    allselected();
                 }//elseifallselected
                  
                 else if(nosel.length == 1) {
-                        oneselected();
+                    oneselected();
                 }//elseifoneselected
             
                 else if(nosel.length === 0) {
-                    console.log(nosel);
-                    subheading02.style.display = "none";
-                    subheading01.style.display = "block";
-                    subheading01.innerText = "Browsing made easier: select your size and only see items in stock for you!";
+                    noneselected();
                 
                 }//elseifnoneselected   
 
             }//howmanyselected
 
+            //open/close event fun
+            opclos.addEventListener('click',function(e) {
+                console.log(e);
+                var arg = e.target.parentElement.parentElement.parentElement.children[2].children[0].children[0].children[0].children[0].children[0].className;
+                console.log(arg);
+                if(e.target.className == "opclosMinus") {
+                    e.target.className = "opclosPlus";
+                    document.getElementById('popwrapper').
+                    className = "closednow";
+                    document.getElementById('mainContainer').
+                    style.display = "none";
+                    document.getElementById('popwrapper').
+                    style.bottom = "0.5px";
+                    howmanySelected(arg);
+                }//if minus and closing
+                else if(e.target.className == "opclosPlus") {
+                    e.target.className = "opclosMinus";
+                    document.getElementById('popwrapper').
+                    className = "main";
+                    document.getElementById('mainContainer').
+                    style.display = "block";
+                    document.getElementById('popwrapper').
+                    style.bottom =  "1px";
+                    howmanySelected(arg);
+                    
+                }//from closed/plus to minus
+                e.stopPropagation();    
+            },false);//opclos event   
+
+
             //subheading event
             mainContainer.addEventListener('click', function(e) {
-                debugger;
-                console.log(e);
-            setTimeout(function() {
-                  count >= 3 ? count=0 : count;
-                count++;
-                if(e.target.parentElement.nodeName == "LABEL" && opclos.className == "opclosMinus") {
-                    console.log(e);
-                    if(count == 1) {
-                        
-                        if(e.target.parentElement.parentElement.classList.contains('notselected')) {
-                            classadded(e);
-                            nosel.push('selected');
-                            howmanySelected(e);
-                            count++;
-                        }//ifselected
-                       
-                        else if(e.target.parentElement.parentElement.classList.contains('selected')) {
-                            //event fires multiple times
-                            classremoved(e);
-                            nosel.pop('selected');
-                            howmanySelected(e);
-                            count++;
-                        }//elseifselected
-
-                    }//goesroundandroundoneceonly count
-        
-                }//clicked while minus 
-
-                else if(e.target.parentElement.nodeName == "LABEL" && opclos.className == "opclosPlus") {
-                    //cant let u checkboxes
-                    e.preventDefault();
+            count >= 3 ? count=0 : count;
+            count++;
+            console.log(e.target);
+            if(e.target.parentElement.nodeName == "LABEL" && opclos.className == "opclosMinus") {
+                
+                console.log(e.target.parentElement.nodeName);
+                if(count == 1) {
                     
-                }//clicked while plus
-             
-                    
-                },false);//label event for plus/minus
-  
+                    if(e.target.parentElement.parentElement.classList.contains('notselected')) {
+                        classadded(e);
+                        nosel.push('selected');
+                        howmanySelected(e);
+                        count++;
+                    }//ifselected
+                   
+                    else if(e.target.parentElement.parentElement.classList.contains('selected')) {
+                        //event fires multiple times
+                        classremoved(e);
+                        nosel.pop('selected');
+                        howmanySelected(e);
+                        count++;
+                    }//elseifselected
 
+                }//goesroundandroundoneceonly count
+    
+            }//clicked while minus 
 
-            },10);//setTimeout    
+            else if(e.target.parentElement.nodeName == "LABEL" && opclos.className == "opclosPlus") {
+                //cant let u checkboxes
+                e.preventDefault();
+                
+            }//clicked while plus
+         
+                
+            },false);//label event for plus/minus
+
             
-           
 
 
-        }//subheading
+        }//opclosEvt
 
         
 
@@ -237,3 +194,18 @@
 
 
 }.call(window.andRedEyelikeWhiteStuff || {}));
+
+
+ 
+
+ 
+
+ 
+    
+ 
+    
+
+
+
+
+
