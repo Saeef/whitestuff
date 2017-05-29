@@ -120,23 +120,8 @@
                 debugger;
                 e.target.parentElement.parentElement.className = "cktd notselected";
                 console.log('removed');
-                howmanySelected(e);
+                return true;
             }//classremoved
-
-            function classadded(e) {
-                e.target.parentElement.parentElement.className = "cktd selected";
-                subheading01.style.display = "none";
-                subheading02.style.display = "block";
-                subheading02.innerText = "Select several sizes to broaden your choice.";
-                howmanySelected(e);
-            }//classadded
-
-            function allselected() {
-                subheading01.style.display = "none";
-                subheading02.style.display = "block";
-                subheading02.innerText = "Select several sizes to broaden your choice.";
-                
-            }//allselected
 
             function oneselected() {
                 subheading01.style.display = "none";
@@ -159,15 +144,18 @@
                 }//elseifallselected
 
                 else if(nosel.length > 1 && nosel < selected.length) {
-                    noneselected();
+                    subheading01.style.display = "none";
+                    subheading02.style.display = "block";
+                    subheading02.innerText = "Select several sizes to broaden your choice.";
                 }
                  
                 else if(nosel.length == 1) {
-                        oneselected();
+                    subheading01.style.display = "none";
+                    subheading02.style.display = "block";
+                    subheading02.innerText = "Select several sizes to broaden your choice.";
                 }//elseifoneselected
             
                 else if(nosel.length === 0 ) {
-                    console.log(nosel.length);
                     subheading02.style.display = "none";
                     subheading01.style.display = "block";
                     subheading01.innerText = "Browsing made easier: select your size and only see items in stock for you!";
@@ -183,44 +171,58 @@
                 count++;
                    if((e.target.parentElement.nodeName == "LABEL" || "INPUT" || "TD" || "SPAN") && (opclos.className == "opclosMinus"))  {
                    
-                    console.log(e.target.tagName);
-                    console.log(e);
                     console.log(count);
                     if(count == 1) {
                         
                         if(e.target.parentElement.parentElement.classList.contains('notselected')) {
                             
-                            classadded(e);
+                            e.target.parentElement.parentElement.className = "cktd selected";
                             nosel.push('selected');
                             howmanySelected(e);
+                            if(nosel.length >= 0) {
+                                subheading01.style.display = "none";
+                                subheading02.style.display = "block";
+                                subheading02.innerText = "Select several sizes to broaden your choice.";
+                            }
                             count++;
                         }//ifselected
 
                         else if(e.target.parentElement.classList.contains('notselected')) {
                             
-                            classadded(e);
+                            e.target.parentElement.className = "cktd selected";
                             nosel.push('selected');
                             howmanySelected(e);
+                            if(nosel.length >= 0) {
+                                subheading01.style.display = "none";
+                                subheading02.style.display = "block";
+                                subheading02.innerText = "Select several sizes to broaden your choice.";
+                            }
                             count++;
                         }//ifselected
                        
                         else if(e.target.parentElement.parentElement.classList.contains('selected')) {
                             //event fires multiple times
-                            console.log('removing selected enter');
-                            classremoved(e);
+                            e.target.parentElement.parentElement.className = "cktd notselected";
                             nosel.pop('selected');
-                            console.log(nosel.length);
                             howmanySelected(e);
+                            if(nosel.length == 0) {
+                                subheading02.style.display = "none";
+                                subheading01.style.display = "block";
+                                subheading01.innerText = "Browsing made easier: select your size and only see items in stock for you!";
+                            }
                             count++;
                         }//elseifselected
 
                         else if(e.target.parentElement.classList.contains('selected')) {
                             //event fires multiple times
-                            console.log('removing selected enter');
-                            classremoved(e);
+                            e.target.parentElement.className = "cktd notselected";
                             nosel.pop('selected');
-                            console.log(nosel.length);
                             howmanySelected(e);
+                            if(nosel.length == 0) {
+                                subheading02.style.display = "none";
+                                subheading01.style.display = "block";
+                                subheading01.innerText = "Browsing made easier: select your size and only see items in stock for you!";
+                            }
                             count++;
                         }//elseifselected
 
