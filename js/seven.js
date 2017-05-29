@@ -9,6 +9,7 @@
             //this.position();
             this.opclosEvt();
             this.subheading();
+            this.connect();
             
            
 
@@ -40,22 +41,6 @@
 
         },//popup
 
-        // position: function() {
-        //     console.info('%c position \u221a', 'background:blue;color:white;');
-        //     var popwrapper = document.getElementById('popwrapper');
-            
-        //     function reheight() {
-        //         popwrapper.style.height = ((34 * window.innerHeight)/100).toFixed(1) + "px";
-                    
-        //     }//reheight
-        //     reheight();
-        //     window.addEventListener('resize', reheight,false);
-                
-            
-            
-            
-        // },//position
-
 
         opclosEvt: function() {
             console.info('%c opclosEvt \u221a', 'background:blue;color:white;');
@@ -81,6 +66,9 @@
                     //if closed, remove checkmarks
                     for(var i=0; i < inp.length; i++) {
                         inp[i].checked = false;
+                    }//for
+                     for(var i=0; i < selecto.length; i++) {
+                        selecto[i].className = "cktd notselected";
                     }//for
                     
                     subheading1.innerText = "Browsing made easier: select your size and only see items in stock for you!";
@@ -116,31 +104,15 @@
             var yessel = [];
             var count = 0;
 
-            function classremoved(e) {
-                debugger;
-                e.target.parentElement.parentElement.className = "cktd notselected";
-                console.log('removed');
-                return true;
-            }//classremoved
-
-            function oneselected() {
-                subheading01.style.display = "none";
-                subheading02.style.display = "block";
-                subheading02.innerText = "Select several sizes to broaden your choice.";
-                
-            }//oneselected
-
-            function noneselected() {
-                subheading02.style.display = "none";
-                subheading01.style.display = "block";
-                subheading01.innerText = "Browsing made easier: select your size and only see items in stock for you!";
-                
-            }//allselected
+         
 
             function howmanySelected(e) {
                 e = e || null;
                 if(nosel.length >= selected.length) {
-                        allselected();
+                    subheading01.style.display = "none";
+                    subheading02.style.display = "block";
+                    subheading02.innerText = "Select several sizes to broaden your choice.";
+                      
                 }//elseifallselected
 
                 else if(nosel.length > 1 && nosel < selected.length) {
@@ -163,22 +135,20 @@
                 }//elseifnoneselected   
 
             }//howmanyselected
-            howmanySelected();
+            
 
             //subheading event
             mainContainer.addEventListener('click', function(e) {
                 count >= 3 ? count=0 : count;
                 count++;
                    if((e.target.parentElement.nodeName == "LABEL" || "INPUT" || "TD" || "SPAN") && (opclos.className == "opclosMinus"))  {
-                   
-                    console.log(count);
                     if(count == 1) {
                         
                         if(e.target.parentElement.parentElement.classList.contains('notselected')) {
-                            
+                           console.log(e); 
                             e.target.parentElement.parentElement.className = "cktd selected";
                             nosel.push('selected');
-                            howmanySelected(e);
+                            //howmanySelected(e);
                             if(nosel.length >= 0) {
                                 subheading01.style.display = "none";
                                 subheading02.style.display = "block";
@@ -191,7 +161,7 @@
                             
                             e.target.parentElement.className = "cktd selected";
                             nosel.push('selected');
-                            howmanySelected(e);
+                            //howmanySelected(e);
                             if(nosel.length >= 0) {
                                 subheading01.style.display = "none";
                                 subheading02.style.display = "block";
@@ -204,7 +174,7 @@
                             //event fires multiple times
                             e.target.parentElement.parentElement.className = "cktd notselected";
                             nosel.pop('selected');
-                            howmanySelected(e);
+                            //howmanySelected(e);
                             if(nosel.length == 0) {
                                 subheading02.style.display = "none";
                                 subheading01.style.display = "block";
@@ -217,7 +187,7 @@
                             //event fires multiple times
                             e.target.parentElement.className = "cktd notselected";
                             nosel.pop('selected');
-                            howmanySelected(e);
+                            //howmanySelected(e);
                             if(nosel.length == 0) {
                                 subheading02.style.display = "none";
                                 subheading01.style.display = "block";
@@ -240,7 +210,35 @@
                 },false);//label event for plus/minus  
             
 
-        }//subheading
+        },//subheading
+
+        connect: function() {
+            console.info('%c connect \u221a', 'background:blue;color:white;');
+            var sizes = document.getElementById('facet_size');
+            var allsizes = sizes.children;
+            var value, match, result;
+            sizes.addEventListener('click',function(e) {
+                console.log(e);
+                if(e.target.tagName == 'SPAN' || 'A' || 'LI') {
+                    for(var i=0; i<e.path.length; i++) {
+                        if(e.path[i].tagName == 'LI') {
+                           value = e.path[i].textContent;    //4 (3)
+                           console.log(value); 
+                        }
+                    } //for
+                }//if
+                result = value.substring(0,2);
+                console.log(result);   //4, 6, 12, XS
+       
+
+            },false);//sizes
+            
+
+            // result = match.substring(0,2);
+            // console.log(result);
+
+
+        }//connect
 
         
 
