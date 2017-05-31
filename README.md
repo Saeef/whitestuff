@@ -32,6 +32,8 @@ to select their sizes earlier in the journey to avoid viewing products not in th
   not able to check any boxes
 - if subheading2 on, then it also switches back to subheading1 (full reset) 
 
+- updated existing project
+
 
 
 
