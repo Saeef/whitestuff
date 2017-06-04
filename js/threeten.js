@@ -1,4 +1,3 @@
-
 (function(andRedEyelikeWhiteStuff, undefined) {
     var $ = window.jQuery;
     var SL = {};
@@ -7,11 +6,6 @@
             this.pgCssDesktop();
             this.popup();
             this.opclosEvt();
-            this.transfer();
-           
-            
-           
-
         
         }, //init
         pgCssDesktop: function() {
@@ -30,48 +24,41 @@
        
         popup: function() {
             console.info('%c popup \u221a', 'background:blue;color:white;');
+            //evt if plus/minus exist
+            debugger;
+            var transfer = document.getElementById('facet_size').children;
             var popup = document.createElement('div');
             popup.id = 'stefano';
             popup.className = 'borderOn';
             var body = document.getElementsByTagName('body')[0];
+            var columns = 0;
             //top section
-            popup.innerHTML = ' <table id="popwrapper" class="main" align="center" id="main" width="302" height="286" align="center" border="0" cellpadding="0" cellspacing="0" data-esp-click="269-1744-18407"> <tr> <td valign="top" class="header"> Shop your size <div id="opclos" class="opclosMinus"></div></td></tr><tr> <td valign="top" class="subheading1">Browsing made easier: <span class="bolder">select your size</span> and only <span class="bolder">see items in stock for you!</span></td><td valign="top" class="subheading2" style="display: none;">Select several sizes to broaden your choice.</td></tr><tr> <td valign="top" id="mainContainer" class="mainContainer"> <table cellpadding="0" cellspacing="0" border="0" width="100% bg="#f3f2f2"><tr>  ';
+            var data = '<table id="popwrapper" class="main re-re" align="center" width="302" height="286" border="0" cellpadding="0" cellspacing="0" data-esp-click="269-1744-18407"> <tbody><tr> <td valign="top" class="header"> Shop your size <div id="opclos" class="opclosMinus"></div></td></tr><tr> <td valign="top" id="subheading1" class="subheading1">Browsing made easier: <span class="bolder">select your size</span> and only <span class="bolder">see items in stock for you!</span></td><td valign="top" id="subheading2" class="subheading2" style="display: none;">Select several sizes to broaden your choice.</td></tr><tr> <td valign="top" id="mainContainer" class="mainContainer"> <table cellpadding="0" cellspacing="0" border="0" width="100% bg="#f3f2f2"><tr>';
             //midsection
-            popup.innerHTML += SL.andRedEyelikeWhiteStuff.transfer();
-
-
-
-
+            for(var i=0; i< transfer.length; i++) {
+                if(columns === 3) {
+                    data += '<tr>';
+                    columns = 0;
+                }
+                
+                data += '<td valign="top" class="' + transfer[i].className + '" data-checked="' + transfer[i].attributes[2].value + '" data-value="' + transfer[i].attributes[5].value + '" data-count="' + transfer[i].attributes[6].value + '" data-displayvalue="' + transfer[i].attributes[7].value  + '">' +  transfer[i].attributes[5].value  + ' (' + transfer[i].attributes[6].value  + ')'  + '</td>';
+                columns++;
+                if(columns === 3) {
+                    data += '</tr>';
+                }//3 tds per tr  °if
+                
+                
+            }//for
+            console.log(data);
             //bottom section
-            popup.innerHTML += ' </tr></table> </td></tr></table>  ';
+            data += ' </table> </td></tr></table>  ';
+            console.log(data);
+            popup.innerHTML = data;
+
 
             body.appendChild(popup);
 
         },//popup
-
-
-       
-
-        transfer: function() {
-            console.info('%c transfer \u221a', 'background:blue;color:white;');
-            var transfer = document.getElementById('facet_size').children;
-            var dataChecked, //transfer[0].attributes[2]
-            dataValue,      //transfer[0].attributes[5]
-            dataCount,      //transfer[0].attributes[6]
-            dataDisplayvalue;   //transfer[0].attributes[7]
-            var data = '';
-
-            for(var i=0; i< transfer.length; i++) {
-
-                transfer[i].innerHTML = '  <td valign="top" class="cktd notselected"><label for="ckbox1-1"><input type="checkbox" id="ckbox1-1" class="ckbox" data-checked="' +'transfer[1].attributes[2]' + 'data-value="' + 'transfer[i].attributes[5]' +  'data-count="' + 'transfer[i].attributes[6]' + ' data-displayvalue="' + 'transfer[i].attributes[7]' +'"/>' + 'transfer[i].attributes[5]' + '<span>(' + 'transfer[i].attributes[6]' + ')</span></label> </td> ';
-
-            }//for
-
-            return data;
-
-
-        },//transfer
-
 
          opclosEvt: function() {
             console.info('%c opclosEvt \u221a', 'background:blue;color:white;');
@@ -123,13 +110,7 @@
             },false);//opclos event   
 
         }//opclos
-
-     
-
          
-
-
-            
     };//SL.andRedEyelikeWhiteStuff
 
     (function() {
@@ -139,8 +120,5 @@
         }, 10);
 
     })();
-
-
-
 
 }.call(window.andRedEyelikeWhiteStuff || {}));
