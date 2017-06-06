@@ -110,22 +110,40 @@
 
         pairing: function() {
             console.info('%c pairing \u221a', 'background:blue;color:white;');
-            debugger ;var filter = document.getElementById('facet_size');
+            var filter = document.getElementById('facet_size');
             var pop = document.querySelectorAll('.cktd');
-            var dvalue, dchecked, dcount, dclass;
+            var initarget,dtarget,dvalue,dcount;
+            console.clear();
             filter.addEventListener('click', function(e) {
-                for (var i = 0; i < filter.children.length; i++) {
-                    if (filter.children[i].children[0].innerText === e.target.innerText) {
-                        console.log('values match: ' + e.target.innerText);
-                        e.target.click();
-
-                    }//if values match
-                    else if (filter.children[i].children[0].children[0].outerText == e.target.outerText) {
-                        console.log('values match: ' + e.target.innerText);
-                        e.target.click();
-
+                for(var i=0; i < pop.length; i++) {
+                    //target must be a Number                                                            
+                    initarget = e.target.innerText;
+                    //if 2nd option =>remove '('
+                    if( initarget.charAt(0) == '(' ) {
+                        dtarget = initarget.slice(1);
+                        dtarget = parseInt(dtarget);
+                        console.info('%c round is: ' + i, 'background:blue;color:white;');
+                        console.log('filter target is: ' + dtarget);
+                    } else {
+                        dtarget = parseInt(initarget);
+                        console.info('%c round is: ' + i, 'background:blue;color:white;');
+                        console.log('filter target is: ' + dtarget);
                     }
-                }
+                    //compare popup and filter
+                    //possible outcomes are:  ^10 (319)$, ^(277)$
+                    dvalue = Number(pop[i].attributes[3].value);
+                    dcount = Number(pop[i].attributes[4].value);
+                    console.log('dvalue is: ' + dvalue);
+                    console.log('dcount is: ' + dcount); 
+                                                        
+                    if (dtarget == dcount || dtarget == dvalue ) {
+                        console.info('%c matched ', 'color:red;');
+                    }//if matches popup
+
+                    else {
+                        console.info('not a matched');
+                    }
+                }//for
 
             }, false);
 
