@@ -6,6 +6,7 @@
             this.pgCssDesktop();
             this.popup();
             this.opclosEvt();
+            this.iniState();
             this.pairing();
 
         },
@@ -108,6 +109,14 @@
         },
         //opclos
 
+        iniState: function() {
+
+
+
+
+
+        }//iniState
+
         pairing: function() {
             console.info('%c pairing \u221a', 'background:blue;color:white;');
             var filter = document.getElementById('facet_size');
@@ -124,29 +133,37 @@
                        atarget = parseInt(starget);
                        if(atarget == pop[i].attributes[3].value) {
                             console.log('target is: ' + atarget);
-                            pop[i].children[0].children[0].style.backgroundColor = "#333";
+                            if( pop[i].children[0].children[0].style.backgroundColor === '') {
+                                pop[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
+                            }//transparent
+                            else if(pop[i].children[0].children[0].style.backgroundColor === "rgb(51, 51, 51)") {
+                                pop[i].children[0].children[0].style.backgroundColor = "";
+                            }//else     
                             
                        }//atarget
-
-                    }//span option
+                    }//if span option
 
                     else if(Number.isInteger(parseInt(initarget))  ) {
                         btarget = parseInt(initarget);
                          //possible outcomes are:  ^10 (319)$, ^(277)$
                         if (btarget == pop[i].attributes[3].value) {
                             console.log('target is: ' + btarget);
-                            pop[i].children[0].children[0].style.backgroundColor = "#333";
+                            if( pop[i].children[0].children[0].style.backgroundColor === '') {
+                                pop[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
+                            }//transparent
+                            else if(pop[i].children[0].children[0].style.backgroundColor === "rgb(51, 51, 51)") {
+                                pop[i].children[0].children[0].style.backgroundColor = "";
+                            }//else
+
                         }//if btarget
-                            
+
                     }//else if number option
-                     
-                                                        
-                   
-                }//for
+                                                                                                
+                }//for loop
 
-            }, false);
+            }, false); //site filter event
 
-        }
+        }//pairing fn
 
     };
     //SL.andRedEyelikeWhiteStuff
