@@ -44,7 +44,7 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 
 
 <kbd>pairing function</kbd> :rocket:
-![]()
+![](whitestuff/images/pairing function last clicked.png) 
 
 
 
