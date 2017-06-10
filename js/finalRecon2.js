@@ -10,6 +10,7 @@
             this.popup();
             this.opclosEvt();
             this.pairing();
+            this.reversePairing();
             this.boardMessage();
             this.iniState();
 
@@ -117,7 +118,8 @@
             console.info('%c iniState \u221a', 'background:blue;color:white;');
             //popa table
             var popa = document.querySelectorAll('.cktd');
-            var index, count;
+            var index;
+            var count = 0;
             //any filter selected
             var filterState = document.getElementById('facet_size').children;
             for(var b=0; b < filterState.length; b++) {
@@ -125,7 +127,6 @@
                     index = b;
                     for(var e=0; e < popa.length; e++) {
                         if(index == e) {
-                            debugger;
                             messcope.innerText = 'index is: ';
                             messcope.innerText += ' ' + index + ' and value is: ';
                             messcope.innerText += ' ' + popa[index].attributes[3].value;
@@ -139,19 +140,14 @@
                     }//for innerloop
                 }//if filter    
                 else if(filterState[b].className == "notselected") {
-                    for(var h=0; h < popa.length; h++) {
+                        //boards only if none are selected at init
                         count++;
-                        if(count == popa.length - 1) {
+                        if(count == popa.length) {
                             messcope.innerText = 'none selected at init'; 
-                            popa[h].className = 'cktd notselected';
                             messone.innerText = 'all classes: " cktd notselected"' +  '\n';
-                            popa[h].children[0].children[0].style.backgroundColor = '';
                             messone.innerText += 'setting initial background: transparent';
                             messtwo.innerText = "iniState function: loops through size filter and newly created popup to find selected checkboxes, then matches them to newly created popup during init phase";
                         }//if
-
-                    }//for innerloop
-
 
                 }//elseif filter    
 
@@ -220,6 +216,66 @@
             }, false); //site filter event
 
         },//pairing fn
+
+        reversePairing: function() {
+            console.info('%c reversePairing \u221a', 'background:blue;color:white;'); 
+            var rfilter = document.getElementById('facet_size');
+            var rpop = document.getElementById('popwrapper');
+            var rpopmark = document.querySelectorAll('.cktd');
+            var rinitarget,ratarget,rbtarget,rdvalue,rdcount,rstarget;
+            console.clear();
+            rpop.addEventListener('click', function(e) {
+                for(var i=0; i < rpopmark.length; i++) {
+                    //target must be a Number                                                            
+                    rinitarget = e.target.innerText;
+                    //if 2nd option => '('
+                    if( rinitarget.charAt(0) == '(' ) {
+                       rstarget = e.target.parentElement.innerText;
+                       ratarget = parseInt(rstarget);
+                       if(ratarget == rpopmark[i].attributes[3].value) {
+                            //console.log('target is: ' + atarget);
+                            messcope.innerText = ratarget;
+                            if( rpopmark[i].children[0].children[0].style.backgroundColor === '') {
+                                rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
+                                messone.innerText = 'rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)"';
+                                messtwo.innerText = 'pairing function fires up an event on site size-filter checkbox and loops through popup table';
+                            }//transparent
+                            else if(rpopmark[i].children[0].children[0].style.backgroundColor === "rgb(51, 51, 51)") {
+                                rpopmark[i].children[0].children[0].style.backgroundColor = "";
+                                messone.innerText = 'pop[i].children[0].children[0].style.backgroundColor = ""';
+                                messtwo.innerText = 'pairing function fires up an event on existing sized-filter checkbox then loops through newly created popup table';
+                            }//else     
+                            
+                       }//atarget
+                    }//if span option
+
+                    else if(Number.isInteger(parseInt(rinitarget))  ) {
+                        rbtarget = parseInt(rinitarget);
+                         //possible outcomes are:  ^10 (319)$, ^(277)$
+                        if (rbtarget == rpopmark[i].attributes[3].value) {
+                            //console.log('target is: ' + btarget);
+                            messcope.innerText = rbtarget;
+                            if( rpopmark[i].children[0].children[0].style.backgroundColor === '') {
+                                rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
+                                messone.innerText = 'rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)"';
+                                messtwo.innerText = 'pairing function fires up an event on site size-filter checkbox and loops through popup table';
+                            }//transparent
+                            else if(rpopmark[i].children[0].children[0].style.backgroundColor === "rgb(51, 51, 51)") {
+                                rpopmark[i].children[0].children[0].style.backgroundColor = "";
+                                messone.innerText = 'rpopmark[i].children[0].children[0].style.backgroundColor = ""';
+                                messtwo.innerText = 'pairing function fires up an event on site size-filter checkbox and loops through popup table';
+                            }//else
+
+                        }//if btarget
+
+                    }//else if number option
+                                                                                                
+                }//for loop
+
+            }, false); //site filter event
+
+
+        },//reversePairing
 
         boardMessage: function() {
                console.info('%c boardMessage \u221a', 'background:blue;color:white;'); 
