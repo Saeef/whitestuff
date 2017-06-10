@@ -34,7 +34,7 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 
 - updated existing project
 -   iniState function sets popup to filter initial values
--   TroubleShoot board lists initial values, selectors and function execution context
+-   TroubleShoot board lists initial size value, index in array  and function execution context
 -   pairing function keeps tracks of changes on filter and updates popup values
 -   troubleshoot board keeps tracks of last clicked value, selector and function execution context
 
