@@ -117,37 +117,44 @@
             console.info('%c iniState \u221a', 'background:blue;color:white;');
             //popa table
             var popa = document.querySelectorAll('.cktd');
-            var index, count;
+            
+            var index;
             //any filter selected
             var filterState = document.getElementById('facet_size').children;
             for(var b=0; b < filterState.length; b++) {
                 if(filterState[b].className == "") {
                     index = b;
-                    for(var e=0; e < popa.length; e++) {
-                        if(index == e) {
-                            debugger;
-                            messcope.innerText = 'index is: ';
-                            messcope.innerText += ' ' + index + ' and value is: ';
-                            messcope.innerText += ' ' + popa[index].attributes[3].value;
-                            popa[e].className = 'cktd';
-                            messone.innerText = 'class: "' + popa[e].className + '"\n';
-                            popa[e].children[0].children[0].style.backgroundColor = 'rgb(51, 51, 51)';
-                            messone.innerText += 'setting initial background: rgb(51,51,51)';
-                            messtwo.innerText = "iniState function: loops through size filter and newly created popup to find selected checkboxes, then matches them to newly created popup during init phase";
+                      debugger;
+                    for(var h=0; h < popa.length; h++) {
+                        if(index == h) {
+                            
+                            messcope.innerText = 'index to match: ' + index + ' ';
+                            popa[h].className = 'cktd';
+                            messone = 'class ';
+                            messone.innerText += popa[h].className;
+                            popa[h].children[0].children[0].style.backgroundColor = 'rgb(51, 51, 51)';
+                            messone.innerText += 'setting initial background: ' + popa[h].children[0].
+                            children[0].style.backgroundColor;
+                            messtwo.innerText += "loops through size filter and newly created popup. to find selected checkboxes, then matches them to newly created popup during init phase";
                         }
 
                     }//for innerloop
                 }//if filter    
                 else if(filterState[b].className == "notselected") {
+                    index = b; 
+                    debugger;
                     for(var h=0; h < popa.length; h++) {
-                        count++;
-                        if(count == popa.length - 1) {
-                            messcope.innerText = 'none selected at init'; 
+                        if(index == h) {
+                            messcope = 'index to match: ';
+                            messcope.innerText += index + ' ';
                             popa[h].className = 'cktd notselected';
-                            messone.innerText = 'all classes: " cktd notselected"' +  '\n';
+                            messone = 'class: ';
+                            messone += popa[h].className + '\n';
                             popa[h].children[0].children[0].style.backgroundColor = '';
-                            messone.innerText += 'setting initial background: transparent';
-                            messtwo.innerText = "iniState function: loops through size filter and newly created popup to find selected checkboxes, then matches them to newly created popup during init phase";
+                            messone.innerText += 'setting initial background: ' + popa[h].children[0].
+                            children[0].style.backgroundColor + '\n';
+                            messtwo = "";
+                            messtwo.innerText += "loops through size filter and newly created popup to find selected checkboxex, then matches them to newly created popup - fake load time event";
                         }//if
 
                     }//for innerloop
@@ -169,6 +176,7 @@
             var pop = document.querySelectorAll('.cktd');
             var initarget,atarget,btarget,dvalue,dcount,starget;
             console.clear();
+            debugger;
             filter.addEventListener('click', function(e) {
                 for(var i=0; i < pop.length; i++) {
                     //target must be a Number                                                            
@@ -225,7 +233,7 @@
                console.info('%c boardMessage \u221a', 'background:blue;color:white;'); 
                var tmesa = document.createElement('section');
                tmesa.id = 'tmessa';
-               tmesa.innerHTML = ' <table id="rmess" align="center" width="400" height="200" border="1" cellpadding="5" cellspacing="0" style="background-color:#f1f1f1;"> <tr> <td valign="top" width="100" style="vertical-align:middle; text-align:center;font-size:13px; "> Target Scope<br/> (last clicked): </td><td valign="top" width="230" id="messcope" style="vertical-align:middle; color:#fff; background-color:#000;"> </td></tr><tr> <td valign="top" width="100" style="vertical-align:middle;text-align:center; font-size:13px;"> Target element (last-clicked): </td><td valign="top" width="230" id="messone" style="vertical-align:middle;color:#fff; background-color:#000;"> </td></tr><tr> <td valign="top" width="100" style="vertical-align:middle;text-align:center; font-size:13px;"> Related function:<br/>all checked boxes at init </td><td valign="top" width="230" id="messtwo" style="vertical-align:middle;color:#fff;background-color:#000;"> </td></tr></table> ';
+               tmesa.innerHTML = ' <table id="rmess" align="center" width="400" height="200" border="1" cellpadding="5" cellspacing="0" style="background-color:#f1f1f1;"> <tr> <td valign="top" width="100" style="vertical-align:middle; text-align:center; "> Target Scope: </td><td valign="top" width="230" id="messcope" style="vertical-align:middle; color:#fff; background-color:#000;"> </td></tr><tr> <td valign="top" width="100" style="vertical-align:middle;text-align:center;"> Target elements: </td><td valign="top" width="230" id="messone" style="vertical-align:middle;color:#fff; background-color:#000;"> </td></tr><tr> <td valign="top" width="100" style="vertical-align:middle;text-align:center;"> Related info: </td><td valign="top" width="230" id="messtwo" style="vertical-align:middle;color:#fff;background-color:#000;"> </td></tr></table> ';
                document.body.appendChild(tmesa);
 
         }//boardMessage
