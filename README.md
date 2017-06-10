@@ -33,6 +33,10 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 - if subheading2 on, then it also switches back to subheading1 (full reset) 
 
 - updated existing project
+-   iniState function sets popup to filter initial values
+-   TroubleShoot board lists initial values, selectors and function execution context
+-   pairing function keeps tracks of changes on filter and updates popup values
+-   troubleshoot board keeps tracks of last clicked value, selector and function execution context
 
 
 
