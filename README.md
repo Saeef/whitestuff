@@ -40,11 +40,11 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 
 
 <kbd>initState function</kbd> :rocket:        
-![](whitestuff/images/iniStatefn.png) 
+![](/images/iniStatefn.png) 
 
 
 <kbd>pairing function</kbd> :rocket:          
-![](whitestuff/images/pairingfn.png) 
+![](/images/pairingfn.png) 
 
 
 
