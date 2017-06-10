@@ -40,11 +40,11 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 
 
 <kbd>initState function</kbd> :rocket:        
-![](whitestuff/images/Function updates checked sizes values on filter against popup.png) 
+![](whitestuff/images/iniStatefn.png) 
 
 
 <kbd>pairing function</kbd> :rocket:          
-![](whitestuff/images/pairing function last clicked.png) 
+![](whitestuff/images/pairingfn.png) 
 
 
 
