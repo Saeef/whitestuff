@@ -34,6 +34,12 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 
 - updated existing project
 
+- added initState function - runs through filter and updates checkboxes against newly created
+  popup values
+- trouble board added, it shows all of the element selected at run time
+- pairing function keeps track of elements selected on filter and popup and
+  troubleboard displays last selected information.
+
 
 
 
