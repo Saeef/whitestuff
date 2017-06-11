@@ -52,7 +52,8 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 
 
 
-
+<kbd>troubled board if none selected</kbd>  :rocket:      
+![](/images/noneselectedTB.png)
  
  
  <kbd>control image</kbd> :rocket:       
