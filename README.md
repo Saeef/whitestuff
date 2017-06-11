@@ -37,6 +37,8 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 -   TroubleShoot board lists initial size value, index in array  and function execution context
 -   pairing function keeps tracks of changes on filter and updates popup values
 -   troubleshoot board keeps tracks of last clicked value, selector and function execution context
+-   reverse pairing function, tracks events on popup to generate filter clicks
+-   troubleshoot board tracks class adding and removing
 
 
 
