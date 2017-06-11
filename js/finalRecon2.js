@@ -220,59 +220,85 @@
         reversePairing: function() {
             console.info('%c reversePairing \u221a', 'background:blue;color:white;'); 
             var rfilter = document.getElementById('facet_size');
+            var rfilters = rfilter.children;
             var rpop = document.getElementById('popwrapper');
             var rpopmark = document.querySelectorAll('.cktd');
             var rinitarget,ratarget,rbtarget,rdvalue,rdcount,rstarget;
-            console.clear();
             rpop.addEventListener('click', function(e) {
                 for(var i=0; i < rpopmark.length; i++) {
-                    //target must be a Number                                                            
                     rinitarget = e.target.innerText;
                     //if 2nd option => '('
                     if( rinitarget.charAt(0) == '(' ) {
                        rstarget = e.target.parentElement.innerText;
                        ratarget = parseInt(rstarget);
-                       if(ratarget == rpopmark[i].attributes[3].value) {
-                            //console.log('target is: ' + atarget);
-                            messcope.innerText = ratarget;
-                            if( rpopmark[i].children[0].children[0].style.backgroundColor === '') {
-                                rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
-                                messone.innerText = 'rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)"';
-                                messtwo.innerText = 'pairing function fires up an event on site size-filter checkbox and loops through popup table';
-                            }//transparent
-                            else if(rpopmark[i].children[0].children[0].style.backgroundColor === "rgb(51, 51, 51)") {
-                                rpopmark[i].children[0].children[0].style.backgroundColor = "";
-                                messone.innerText = 'pop[i].children[0].children[0].style.backgroundColor = ""';
-                                messtwo.innerText = 'pairing function fires up an event on existing sized-filter checkbox then loops through newly created popup table';
-                            }//else     
-                            
-                       }//atarget
-                    }//if span option
+                       for(var d=0; d < rfilters.length-i; d++) {
+                            if(ratarget == rfilters[d].attributes[5].value) {
+                                    messcope.innerText = ratarget;
+                                    if(rfilters[d].className == 'notselected') {
+                                        rfilters[d].click();
+                                        rfilters[d].className = "";
+                                        messone.innerText = '';
+                                        messone.innerText = 'removed filter class';
+                                        rpopmark[d].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
+                                        return true;
+                                    }//notselected
+                                    else if(rfilters[d].className == "") {
+                                        rfilters[d].click();
+                                        rfilters[d].className = 'notselected';
+                                        messone.innerText = 'added filter class';
+                                        messtwo.innerText = '';
+                                        messtwo.innerText = 'reversepairing function fires up an event on popup filter and loops through site size-filter to find a match, then removes/adds class';
+                                        rpopmark[d].children[0].children[0].style.backgroundColor = "";
+                                        return true;
+                                    }//selected
+                                        
+                                    
+                            }//if ratarget
+
+                        }//forloop rfilter
+                       
+                    }//if
 
                     else if(Number.isInteger(parseInt(rinitarget))  ) {
                         rbtarget = parseInt(rinitarget);
-                         //possible outcomes are:  ^10 (319)$, ^(277)$
-                        if (rbtarget == rpopmark[i].attributes[3].value) {
-                            //console.log('target is: ' + btarget);
-                            messcope.innerText = rbtarget;
-                            if( rpopmark[i].children[0].children[0].style.backgroundColor === '') {
-                                rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
-                                messone.innerText = 'rpopmark[i].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)"';
-                                messtwo.innerText = 'pairing function fires up an event on site size-filter checkbox and loops through popup table';
-                            }//transparent
-                            else if(rpopmark[i].children[0].children[0].style.backgroundColor === "rgb(51, 51, 51)") {
-                                rpopmark[i].children[0].children[0].style.backgroundColor = "";
-                                messone.innerText = 'rpopmark[i].children[0].children[0].style.backgroundColor = ""';
-                                messtwo.innerText = 'pairing function fires up an event on site size-filter checkbox and loops through popup table';
-                            }//else
+                        //possible outcomes are:  ^10 (319)$, ^(277)$
+                        for(var g=0; g < rfilters.length-i; g++) {
+                            if(rbtarget == rfilters[g].attributes[5].value) {
+                                    messcope.innerText = rbtarget;
+                                    if(rfilters[g].className == 'notselected') {
+                                        rfilters[g].click();
+                                        rfilters[g].className = "";
+                                        messone.innerText = '';
+                                        messone.innerText += ' removed filter class';
+                                        messtwo.innerText = '';
+                                        messtwo.innerText = 'reversepairing function fires up an event on popup filter and loops through site size-filter to find a match, then removes/adds class';
+                                        rpopmark[g].children[0].children[0].style.backgroundColor = "rgb(51, 51, 51)";
+                                        rpopmark[g].children[0].children[0].click();
+                                        return true;
 
-                        }//if btarget
+                                    }//notselected
+                                    else if(rfilters[g].className == "") {
+                                        rfilters[g].click();
+                                        rfilters[g].className = 'notselected';
+                                        messone.innerText = 'added filter class';
+                                        messtwo.innerText = '';
+                                        messtwo.innerText = 'reversepairing function fires up an event on popup filter and loops through site size-filter to find a match, then removes/adds class';
+                                        rpopmark[g].children[0].children[0].style.backgroundColor = "";
+                                        rpopmark[g].children[0].children[0].click();
+                                        return true;
+
+                                    }//selected
+                                        
+                                    
+                            }//if rbtarget
+
+                         }//forloop
 
                     }//else if number option
                                                                                                 
                 }//for loop
 
-            }, false); //site filter event
+            }, false); //popup event
 
 
         },//reversePairing
