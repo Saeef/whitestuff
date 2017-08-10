@@ -31,8 +31,6 @@ to select their sizes earlier in the journey to avoid viewing products not in th
 - if switched from minus to plus, all checkboxes are removed and you\'re    
   not able to check any boxes
 - if subheading2 on, then it also switches back to subheading1 (full reset) 
-
-- updated existing project
 -   iniState function sets popup to filter initial values
 -   TroubleShoot board lists initial size value, index in array  and function execution context
 -   pairing function keeps tracks of changes on filter and updates popup values
